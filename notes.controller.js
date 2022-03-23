@@ -1,7 +1,6 @@
 const fs = require('fs/promises')
 const path = require('path')
 const chalk = require('chalk')
-const { getCipherInfo } = require('crypto')
 
 const notesPath = path.join(__dirname, 'db.json')
 
@@ -38,7 +37,7 @@ async function printNotes() {
 
 async function removeNote(id) {
     const notes = await getNotes()
-    const index = notes.indexOf("id")
+    const index = notes.indexOf(id)
     notes.splice(index, 1)
     // notes.filter(note => +note.id !== id)
     await saveNotes(notes)
