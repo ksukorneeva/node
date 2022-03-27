@@ -37,11 +37,12 @@ async function printNotes() {
 
 async function updateNote(title, id) {
   const notes = await getNotes()
-  const index = notes.indexOf(id)
-  console.log(notes[index])
-  console.log(title)
-  // notes[index].title = title
-  console.log(notes)
+  notes.map(note => {
+    if (note.id === id){
+      note.title = title
+    }
+    return note = {title: note.title, id: note.id}
+  })
   await saveNotes(notes)
   console.log(chalk.bgGreen('Note was update!'))
 }

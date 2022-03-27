@@ -11,11 +11,13 @@ document.addEventListener('click', event => {
             id, title: newTitle
         }
         if(newTitle){
-            update(data)
-            }
+            update(data).then(()=> {
+                event.target.parentNode.querySelector('p').textContent = newTitle
+            })
         }
     }
-
+    }
+)
 async function remove(id) {
     await fetch(`/${id}`, {
         method: 'DELETE'
@@ -29,8 +31,4 @@ async function update(data) {
           },
         body: JSON.stringify(data)
     })
-    .then(res => console.log(res))
-    .then(res=>res.json())
-    
 }
-)
