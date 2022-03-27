@@ -35,6 +35,17 @@ async function printNotes() {
   })
 }
 
+async function updateNote(title, id) {
+  const notes = await getNotes()
+  const index = notes.indexOf(id)
+  console.log(notes[index])
+  console.log(title)
+  // notes[index].title = title
+  console.log(notes)
+  await saveNotes(notes)
+  console.log(chalk.bgGreen('Note was update!'))
+}
+
 async function removeNote(id) {
     const notes = await getNotes()
     const index = notes.indexOf(id)
@@ -45,5 +56,5 @@ async function removeNote(id) {
 }
 
 module.exports = {
-  addNote, printNotes, removeNote
+  addNote, getNotes, removeNote, updateNote
 }
